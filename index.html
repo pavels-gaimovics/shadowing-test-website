@@ -782,6 +782,130 @@
 
     <!--====== SERVICES PART ENDS ======-->
 
+    <section class="showcase-area pt-100 pb-130">
+        <div class="container">
+            <h3 class="pb-50">Pārbaudiet sava suņa apmierinātību</h3>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="services-right">
+                        <form id="dog-hapiness-calculator">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="single-form form-group">
+                                        <label for="walk" class="form-label">Сik bieži jums vajadzētu pastaigāties ar savu suni?</label>
+                                        <h5>{{ walkHumanized }}</h5>
+                                        <input v-model="walk" id="walk" type="range" min="1" max="5" >
+                                    </div> <!-- single form -->
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single-form form-group">
+                                        <label for="eat" class="form-label">Cik bieži jums vajadzētu barot savu suni?</label>
+                                        <h5>{{ eatHumanized }}</h5>
+                                        <input v-model="eat" id="eat" type="range" min="1" max="5">
+                                    </div> <!-- single form -->
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single-form form-group">
+                                        <label for="play" class="form-label">Cik bieži jums vajadzētu spēlēties ar savu suni?</label>
+                                        <h5>{{ playHumanized }}</h5>
+                                        <input v-model="play" id="play" type="range" min="1" max="5">
+                                    </div> <!-- single form -->
+                                </div>
+                                <div class="col-lg-12">
+                                    <h3>Jūsu suns ir tik laimīgs:</h3>
+                                    <h3 :style="{ color: happinessColor }">{{ dogHappiness }}</h3>
+                                </div>
+                            </div> <!-- row -->
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="services-left">
+                        <img src="assets/images/suspicious-dog.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue
+
+        const walkDesc = [
+            'Nekad',
+            'Katru menesi',
+            'Katru nedeļu',
+            'Katru dienu',
+            'Katru minūti'
+        ]
+
+        const eatDesc = [
+            'Nekad',
+            'Katru nedeļu',
+            'Reizi dienā',
+            'Vairākas reizes dienā',
+            'Visu laiku'
+        ]
+
+        const playDesc = [
+            'Nekad',
+            'Reizi menesi',
+            'Kad viņš grīb',
+            'Reizi nedeļā',
+            'Reizi dienā'
+        ]
+
+        createApp({
+            data() {
+                return {
+                    walk: 1,
+                    eat: 1,
+                    play: 1
+                }
+            },
+            computed: {
+                walkHumanized() {
+                    return walkDesc[this.walk - 1]
+                },
+                eatHumanized() {
+                    return eatDesc[this.eat - 1]
+                },
+                playHumanized() {
+                    return playDesc[this.play - 1]
+                },
+                totalPoints() {
+                    return +this.walk + +this.eat + +this.play
+                },
+                isHappy() {
+                    return this.walk == 4 && this.eat == 4 && this.play == 4
+                },
+                isOk(){
+                    return this.totalPoints > 10
+                },
+                dogHappiness() {
+                    if (this.isHappy) {
+                        return 'Dzīvo savu labāko dzīvi'
+                    }
+
+                    return this.isOk
+                        ? 'Laimīgs!'
+                        : 'Nepārak'
+                },
+                happinessColor() {
+                    if (this.isHappy) {
+                        return 'green'
+                    }
+
+                    return this.isOk
+                        ? 'gray'
+                        : 'red'
+                }
+            }
+        }).mount('#dog-hapiness-calculator')
+    </script>
+
+
     <!--====== SHOWCASE PART START ======-->
 
     <section id="showcase" class="showcase-area pt-100 pb-130">
@@ -1264,7 +1388,6 @@
 
     <!--====== Main js ======-->
     <script src="assets/js/main.js"></script>
-
 </body>
 
 </html>
