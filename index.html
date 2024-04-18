@@ -878,14 +878,14 @@
                     return +this.walk + +this.eat + +this.play
                 },
                 isHappy() {
-                    return this.walk == 4 && this.eat == 4 && this.play == 4
+                    return this.totalPoints == 15
                 },
                 isOk(){
-                    return this.totalPoints > 10
+                    return this.totalPoints <= 14
                 },
                 dogHappiness() {
                     if (this.isHappy) {
-                        return 'Dzīvo savu labāko dzīvi'
+                        return 'Dzīvo savu labāko dzīvi' 
                     }
 
                     return this.isOk
