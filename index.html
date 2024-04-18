@@ -125,6 +125,7 @@
                                     <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s"><span>Nāc</span> un <span>iepazīsties</span></h1>
                                     <p class="mb-25" data-animation="fadeInUp" data-delay="0.9s"> Vieta <br> tekstam.</p>
                                     <a class="main-btn" href="#" data-animation="fadeInUp" data-delay="1.5s">Uzzināt vairāk <i class="lni-chevron-right"></i></a>
+                                    <a class="main-btn" href="#contact" data-animation="fadeInUp" data-delay="1.5s">Pieteikties <i class="lni-chevron-right"></i></a>
                                 </div> <!-- slider product content -->
                             </div>
                         </div> <!-- row -->
@@ -147,6 +148,7 @@
                                         <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s"><span>Kamēr vel</span> ir tāda <span>iespēja</span></h1>
                                         <p class="mb-25" data-animation="fadeInUp" data-delay="0.9s"> Vieta <br> tekstam 2.</p>
                                         <a class="main-btn" href="#" data-animation="fadeInUp" data-delay="1.5s">Uzzināt vairāk <i class="lni-chevron-right"></i></a>
+                                        <a class="main-btn" href="#contact" data-animation="fadeInUp" data-delay="1.5s">Pieteikties <i class="lni-chevron-right"></i></a>
                                     </div> <!-- slider product content -->
                                 </div>
                             </div> <!-- row -->
@@ -878,19 +880,19 @@
                     return +this.walk + +this.eat + +this.play
                 },
                 isHappy() {
-                    return this.walk == 4 && this.eat == 4 && this.play == 4
+                    return this.totalPoints == 15
                 },
                 isOk(){
-                    return this.totalPoints > 10
+                    return this.totalPoints <= 14
                 },
                 dogHappiness() {
                     if (this.isHappy) {
-                        return 'Dzīvo savu labāko dzīvi'
+                        return 'Dzīvo savu labāko dzīvi' 
                     }
 
                     return this.isOk
-                        ? 'Gandriz laimīgs'
-                        : 'Nepārak'
+                        ? 'Gandriz laimīgs' //true
+                        : 'Nepārak'  //false
                 },
                 happinessColor() {
                     if (this.isHappy) {
